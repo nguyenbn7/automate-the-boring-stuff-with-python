@@ -3,7 +3,7 @@
 back_to_zip.py - Copies an entire folder and its content into
 a ZIP file whose file name increments
 
-*Note: I use pathlib rather than os due to simplicity to use and argparse for
+* Note: I use pathlib rather than os due to simplicity to use and argparse for
 handle argument.
 """
 
