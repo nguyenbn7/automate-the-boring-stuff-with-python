@@ -61,7 +61,7 @@ capitals = {
 }
 
 
-def generate_quizzes_and_answers(no_quizzes: int | None, out: str | None):
+def generate_quizzes_and_answers(no_quiz: int, out: str | None = None):
     current_path = (
         Path(out).resolve()
         if not out or (out and len(out))
@@ -75,7 +75,7 @@ def generate_quizzes_and_answers(no_quizzes: int | None, out: str | None):
     quiz_answers_path = current_path / "quiz_answers"
     quiz_answers_path.mkdir(parents=True, exist_ok=True)
 
-    for quiz_num in range(no_quizzes or 35):
+    for quiz_num in range(no_quiz):
         with open(quiz_path / f"capitals_quiz_{quiz_num + 1}.txt", "w") as quiz_file:
             with open(
                 quiz_answers_path / f"capitals_quiz_answers_{quiz_num + 1}.txt",
@@ -119,18 +119,18 @@ if __name__ == "__main__":
     parser = ArgumentParser()
 
     parser.add_argument(
-        "-nq",
+        "-n",
         "--no-quiz",
-        nargs="?",
         help="Total of quiz files generated. Default 35",
         type=int,
+        default=35,
     )
 
     parser.add_argument(
         "-o",
         "--out",
-        nargs="?",
         help="Destination folder. Default current folder of this file",
+        default=".",
     )
 
     args = parser.parse_args()
